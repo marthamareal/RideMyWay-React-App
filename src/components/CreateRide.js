@@ -32,13 +32,6 @@ class CreateRide extends React.Component {
                         <input type="number" id="price"
                                required="required" title="Input a correct price eg 50,5000,10000....."/>
 
-                        <div id="loading">
-                            <a>please wait </a>
-                            <a className="dot1">.</a>
-                            <a className="dot2">.</a>
-                            <a className="dot3">.</a>
-                        </div>
-
                         <input type="submit" value="Create"/>
                     </form>
 

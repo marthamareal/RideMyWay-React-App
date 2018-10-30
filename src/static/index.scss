@@ -18,7 +18,7 @@ h1{
     margin-bottom: 5px;
 }
 
-.index-content{
+.index-content, .container{
     display: flex;
     height: 600px;
     width: 80%;
@@ -85,7 +85,7 @@ h1{
     margin-top: 5px;
 }
 
-h3,h2{
+h3,h2, h4{
     color: green;
     float: right;
 }
@@ -104,11 +104,11 @@ h4{
 }
 
 .signup-login input[type=text],input[type=email],input[type=password],input[type=number],input[type=date],input[type=time]{
-    width: 70%;
-    height: auto;
-    padding: 10px 10px;
-    margin-left: 10%;
-    margin-bottom: 5px;
+    width: 70%!important;
+  height: auto;
+    padding: 10px 5px;
+    margin-left: 5px!important;
+    margin-bottom: 5px!important;
     color: green;
 }
 
@@ -206,7 +206,7 @@ label{
     padding: 10px;
     color: white;
 }
-h4{
+h4,h5,h6{
     color: green;
 }
 
@@ -807,4 +807,10 @@ float: none;
     margin-left: 15px;
 
 }
+}
+
+#toast-container {
+  position: fixed !important;
+    bottom: 0px !important;
+    left: 0px !important;
 }
