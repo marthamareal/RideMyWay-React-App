@@ -1,7 +1,17 @@
 import axios from 'axios';
 
-export const axiosInstance = axios.create(
-    {
-  baseURL: 'http://127.0.0.1:5000'
+
+
+const url = 'http://127.0.0.1:5000';
+
+let settings = {
+  baseURL: url
+};
+
+if (localStorage.getItem('token')) {
+  settings = {
+    baseURL: url,
+    headers: { token: localStorage.getItem('token') }
+  };
 }
-);
+export const axiosInstance = axios.create(settings);
