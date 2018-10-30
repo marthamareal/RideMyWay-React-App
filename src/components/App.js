@@ -8,6 +8,7 @@ import ContactUs from "./ContactUs";
 import AboutUs from "./AboutUs";
 import Signup from "./Signup";
 import Profile from "./Profile";
+import RidesList from "./RidesList";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path={ '/contact-us' } component={ContactUs}/>
             <Route path={ '/about-us' } component={AboutUs}/>
             <Route path={ '/signup' } component={Signup}/>
+            <Route path={ '/rides' } component={RidesList}/>
 
       </div>
     );
