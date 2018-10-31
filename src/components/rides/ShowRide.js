@@ -1,5 +1,5 @@
 import React from 'react'
-import {getRide,showRide,deleteRide,requestRide} from "../../actions/Rides";
+import {getRide, showRide, deleteRide, requestRide, editRide, formRide} from "../../actions/Rides";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import M from "materialize-css";
@@ -18,9 +18,9 @@ class ShowRide extends React.Component {
         this.props.history.goBack()
     };
 
-    onDelete=  event =>{
+    onDelete= async event =>{
         event.preventDefault();
-        this.props.deleteRide(this.props.match.params.rideId);
+       await this.props.deleteRide(this.props.match.params.rideId);
 
          if (this.props.ride.message) {
             M.toast({html: 'Ride deleted successfully', id: 'toast-container', classes: "green darken-3"});
@@ -30,6 +30,14 @@ class ShowRide extends React.Component {
             M.toast({html: 'Failed to delete ride', classes: "red darken-3"});
             this.props.history.goBack()
         }
+
+    };
+
+    onEdit=  event =>{
+        event.preventDefault();
+        this.props.editRide(true);
+        this.props.formRide(this.props.ride);
+        this.props.history.push(`/edit-ride/${this.props.match.params.rideId}`)
 
     };
 
@@ -86,8 +94,8 @@ class ShowRide extends React.Component {
                             <div className="card-action">
                                 <a className={'btn light-green center'} onClick={this.request}>REQUEST</a>
 
-                                {/*<a className={'btn light-green left'} href="#">EDIT</a>*/}
-                                {/*<a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>*/}
+                                <a className={'btn light-green left'} onClick={this.onEdit}>EDIT</a>
+                                <a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>
                             </div>
                         </div>
                     </div>
@@ -107,5 +115,5 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, {getRide, showRide, deleteRide, requestRide})(ShowRide));
+export default withRouter(connect(mapStateToProps, {getRide, showRide, deleteRide, requestRide, editRide,formRide})(ShowRide));
 

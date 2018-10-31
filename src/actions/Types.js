@@ -7,3 +7,4 @@ export const FORM_RIDE = "FORM_RIDE";
 export const CREATE_RIDE = "CREATE_RIDE";
 export const SHOW_RIDE = "SHOW_RIDE";
 export const STATUS_CODE = "STATUS_CODE";
+export const EDIT_RIDE = "EDIT_RIDE";

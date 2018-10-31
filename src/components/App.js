@@ -22,6 +22,7 @@ class App extends Component {
             <Route path={ '/about-us' } component={AboutUs}/>
             <Route path={ '/signup' } component={Signup}/>
             <Route path={ '/show-ride/:rideId' } component={ShowRide}/>
+            <Route path={ '/edit-ride/:rideId' } component={CreateRide}/>
 
       </div>
     );
