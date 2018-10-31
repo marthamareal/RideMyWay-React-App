@@ -1,7 +1,12 @@
 import React from 'react'
+import {withRouter} from "react-router-dom";
 
 
 class RidesList extends React.Component {
+    getRide = rideId => event =>{
+        event.preventDefault();
+        this.props.history.push(`/show-ride/${rideId}`)
+    };
 
     render() {
         return (
@@ -21,7 +26,7 @@ class RidesList extends React.Component {
                     <tbody>
                     {this.props.rides.map((ride,index) => {
 
-                        return( <tr>
+                        return( <tr onClick={this.getRide(index+1)}>
                             <td>{index+1}</td>
                             <td>{ride.date}</td>
                             <td>{ride.ref_no}</td>
@@ -40,4 +45,4 @@ class RidesList extends React.Component {
     }
 }
 
-export default RidesList;
+export default withRouter(RidesList);

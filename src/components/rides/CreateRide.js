@@ -33,9 +33,9 @@ class CreateRide extends React.Component {
 
         await this.props.createRide(this.props.form_ride);
 
-        if (this.props.ride.source) {
+        if (this.props.ride.id) {
             M.toast({html: 'Ride created successfully', id: 'toast-container', classes: "green darken-3"});
-            this.props.history.push('/')
+            this.props.history.push(`/show-ride/${this.props.ride.id}`)
 
         } else {
             M.toast({html: 'Failed to create ride', classes: "red darken-3"});
