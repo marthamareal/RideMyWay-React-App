@@ -7,7 +7,7 @@ class ContactUs extends React.Component {
 
                 <div className="signup-login contact-us">
                     <center><h4>CONTACT US</h4></center>
-                    <form action="ride-offer-list.html">
+                    <form >
                         <label>Your Email</label>
                         <input type="email" placeholder="youremail@gmail.com"/>
                         <label>Message:</label><br/>
