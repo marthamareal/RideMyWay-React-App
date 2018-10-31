@@ -83,3 +83,21 @@ export const getRide = rideId =>  async (dispatch) => {
                 })
 
 };
+export const deleteRide = rideId =>  async (dispatch) => {
+        return await axiosInstance
+                .delete(`/rides/delete/${rideId}`)
+                .then((response) => {
+                    console.log(response);
+                    dispatch(_createRide(response.data));
+                } )
+                .catch(error => {
+                    try {
+                        let errors= error.response;
+                        console.log(errors)
+
+                    } catch(error) {
+                         console.log(error)
+                    }
+                })
+
+};
