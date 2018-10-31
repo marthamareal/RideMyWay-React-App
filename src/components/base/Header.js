@@ -11,7 +11,6 @@ class Header extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.props.history.push('/')
-        //reload after signout
     };
 
     render() {
@@ -24,7 +23,7 @@ class Header extends React.Component {
         <div className="menu-list">
             <ul>
                 <Link to={'/'}><li>HOME</li></Link>
-                <Link to={'/create-ride'}><li>DRIVE</li></Link>
+                {localStorage.getItem('token')&&<Link to={'/create-ride'}><li>DRIVE</li></Link>}
                 <Link to={'/contact-us'}><li>CONTACT US</li></Link>
                 <Link to={ '/about-us' }><li>ABOUT US</li></Link>
                 {localStorage.getItem('token')&&<li onClick={this.logout} >LOGOUT</li>}

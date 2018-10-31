@@ -1,7 +1,8 @@
 import React from 'react'
-import {getRide,showRide} from "../../actions/Rides";
+import {getRide,showRide,deleteRide} from "../../actions/Rides";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import M from "materialize-css";
 
 class ShowRide extends React.Component {
 
@@ -15,6 +16,21 @@ class ShowRide extends React.Component {
         event.preventDefault();
         this.props.showRide(false);
         this.props.history.goBack()
+    };
+
+    onDelete=  event =>{
+        event.preventDefault();
+        this.props.deleteRide(this.props.match.params.rideId);
+
+         if (this.props.ride.message) {
+            M.toast({html: 'Ride deleted successfully', id: 'toast-container', classes: "green darken-3"});
+        this.props.history.goBack()
+
+        } else {
+            M.toast({html: 'Failed to delete ride', classes: "red darken-3"});
+            this.props.history.goBack()
+        }
+
     };
 
     render() {
@@ -55,7 +71,7 @@ class ShowRide extends React.Component {
                             </table>
                             <div className="card-action">
                                 <a className={'btn light-green left'} href="#">EDIT</a>
-                                <a className={'btn red right'}href="#">DELETE</a><br/>
+                                <a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>
                             </div>
                         </div>
                     </div>
@@ -74,5 +90,5 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps, {getRide, showRide})(ShowRide));
+export default withRouter(connect(mapStateToProps, {getRide, showRide, deleteRide})(ShowRide));
 
