@@ -1,4 +1,4 @@
-import {CREATE_RIDE, FORM_RIDE, FORM_USER, REGISTER_USER, RIDES_LIST, SHOW_RIDE} from "./Types";
+import {CREATE_RIDE, FORM_RIDE, FORM_USER, REGISTER_USER, RIDES_LIST, SHOW_RIDE, STATUS_CODE} from "./Types";
 import { axiosInstance } from "../globals";
 
 export const ridesList = payload =>{
@@ -23,6 +23,12 @@ const _createRide = payload =>{
 export const showRide = payload =>{
     return{
         type: SHOW_RIDE,
+        payload }
+};
+
+export const statusCode = payload =>{
+    return{
+        type: STATUS_CODE,
         payload }
 };
 
@@ -89,6 +95,23 @@ export const deleteRide = rideId =>  async (dispatch) => {
                 .then((response) => {
                     console.log(response);
                     dispatch(_createRide(response.data));
+                } )
+                .catch(error => {
+                    try {
+                        let errors= error.response;
+                        console.log(errors)
+
+                    } catch(error) {
+                         console.log(error)
+                    }
+                })
+
+};
+export const requestRide = rideId =>  async (dispatch) => {
+        return await axiosInstance
+                .post(`/rides/requests/create/${rideId}`)
+                .then((response) => {
+                    dispatch(statusCode(response.status));
                 } )
                 .catch(error => {
                     try {

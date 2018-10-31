@@ -1,5 +1,5 @@
 import React from 'react'
-import {getRide,showRide,deleteRide} from "../../actions/Rides";
+import {getRide,showRide,deleteRide,requestRide} from "../../actions/Rides";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import M from "materialize-css";
@@ -28,6 +28,20 @@ class ShowRide extends React.Component {
 
         } else {
             M.toast({html: 'Failed to delete ride', classes: "red darken-3"});
+            this.props.history.goBack()
+        }
+
+    };
+
+    request=  async event => {
+        event.preventDefault();
+        await this.props.requestRide(this.props.match.params.rideId);
+        if (this.props.status === 201) {
+            M.toast({html: 'Request made successfully', id: 'toast-container', classes: "green darken-3"});
+            this.props.history.goBack()
+
+        } else {
+            M.toast({html: 'Failed to request ride', classes: "red darken-3"});
             this.props.history.goBack()
         }
 
@@ -70,8 +84,10 @@ class ShowRide extends React.Component {
                                 </tbody>
                             </table>
                             <div className="card-action">
-                                <a className={'btn light-green left'} href="#">EDIT</a>
-                                <a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>
+                                <a className={'btn light-green center'} onClick={this.request}>REQUEST</a>
+
+                                {/*<a className={'btn light-green left'} href="#">EDIT</a>*/}
+                                {/*<a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>*/}
                             </div>
                         </div>
                     </div>
@@ -86,9 +102,10 @@ class ShowRide extends React.Component {
 const mapStateToProps = (state) => {
     return {
         ride: state.rides.ride,
-        showRide: state.rides.showRide
+        showRide: state.rides.showRide,
+        status: state.rides.status
     }
 };
 
-export default withRouter(connect(mapStateToProps, {getRide, showRide, deleteRide})(ShowRide));
+export default withRouter(connect(mapStateToProps, {getRide, showRide, deleteRide, requestRide})(ShowRide));
 
