@@ -1,18 +1,10 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {getRides} from "../actions/Rides";
+
 
 class RidesList extends React.Component {
 
-    async componentWillMount(){
-        await this.props.getRides(true)
-    }
-
     render() {
         return (
-
-            <div className="container">
-
                 <table>
                     <thead>
                     <tr>
@@ -44,17 +36,8 @@ class RidesList extends React.Component {
                     </tbody>
                 </table>
 
-
-            </div>
         )
     }
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        rides: state.rides.ridesList,
-    }
-};
-
-export default connect(mapStateToProps,{getRides})(RidesList);
+export default RidesList;

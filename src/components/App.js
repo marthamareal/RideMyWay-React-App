@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import '../static/App.css';
 import {Route} from "react-router-dom";
-import Header from "./Header";
+import Header from "./base/Header";
 import Home from "./Home";
-import CreateRide from "./CreateRide";
-import ContactUs from "./ContactUs";
-import AboutUs from "./AboutUs";
-import Signup from "./Signup";
-import Profile from "./Profile";
-import RidesList from "./RidesList";
+import CreateRide from "./rides/CreateRide";
+import ContactUs from "./base/ContactUs";
+import AboutUs from "./base/AboutUs";
+import Signup from "./auth/Signup";
+import Profile from "./auth/Profile";
 
 class App extends Component {
   render() {
@@ -21,7 +20,6 @@ class App extends Component {
             <Route path={ '/contact-us' } component={ContactUs}/>
             <Route path={ '/about-us' } component={AboutUs}/>
             <Route path={ '/signup' } component={Signup}/>
-            <Route path={ '/rides' } component={RidesList}/>
 
       </div>
     );

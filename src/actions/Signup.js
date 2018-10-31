@@ -51,6 +51,7 @@ export const loginUser = postData =>  async (dispatch) => {
                 .post('/auth/login', postData)
                 .then((response) => {
                     localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('user', response.data.lname);
                 } )
                 .catch(error => {
                     try {
