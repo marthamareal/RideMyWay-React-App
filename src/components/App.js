@@ -8,6 +8,7 @@ import ContactUs from "./base/ContactUs";
 import AboutUs from "./base/AboutUs";
 import Signup from "./auth/Signup";
 import Profile from "./auth/Profile";
+import ShowRide from "./rides/ShowRide";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path={ '/contact-us' } component={ContactUs}/>
             <Route path={ '/about-us' } component={AboutUs}/>
             <Route path={ '/signup' } component={Signup}/>
+            <Route path={ '/show-ride/:rideId' } component={ShowRide}/>
 
       </div>
     );

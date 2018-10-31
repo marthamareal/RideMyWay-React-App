@@ -814,3 +814,29 @@ float: none;
     bottom: 0px !important;
     left: 0px !important;
 }
+
+// Handels the background on model show
+
+  .modal-overlay {
+    position: fixed;
+    z-index: 1002;
+    top: -25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    opacity: 0.5;
+    display: block;
+    will-change: opacity;
+  }
+
+  // Handel model display
+  .modal-open {
+    z-index: 9000;
+    display: block;
+    opacity: 8;
+    top: 20%;
+    width: 500px;
+    transform: scaleX(1) scaleY(1);
+  }
