@@ -7,7 +7,7 @@ export const formUser = payload =>{
         payload }
 };
 
-const createUser = payload =>{
+export const createUser = payload =>{
     return{
         type: REGISTER_USER,
         payload }
@@ -19,7 +19,7 @@ export const loginForm = payload =>{
         payload }
 };
 
-const createErrors = payload =>{
+export const createErrors = payload =>{
     return{
         type: REGISTER_ERRORS,
         payload }
@@ -35,8 +35,7 @@ export const registerUser = postData =>  async (dispatch) => {
                 } )
                 .catch(error => {
                     try {
-                        let errors= error.response;
-                        dispatch(createErrors(errors));
+                        dispatch(createErrors( error.response.data));
                     } catch(error) {
                         dispatch(createErrors({error : 'Check your internet connection'}));
                     }
@@ -55,8 +54,7 @@ export const loginUser = postData =>  async (dispatch) => {
                 } )
                 .catch(error => {
                     try {
-                        let errors= error.response;
-                        dispatch(createErrors(errors));
+                        dispatch(createErrors(error.response.data));
                     } catch(error) {
                         dispatch(createErrors({error : 'Check your internet connection'}));
                     }

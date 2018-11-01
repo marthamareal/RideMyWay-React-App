@@ -1,195 +1,176 @@
-import {CREATE_RIDE, FORM_RIDE, EDIT_RIDE, RIDES_LIST, SHOW_RIDE, STATUS_CODE, RIDE_REQUESTS} from "./Types";
-import { axiosInstance } from "../globals";
+import {CREATE_RIDE, EDIT_RIDE, FORM_RIDE, RIDE_REQUESTS, RIDES_LIST, SHOW_RIDE, STATUS_CODE} from "./Types";
+import {axiosInstance} from "../globals";
+import {createErrors} from "./Signup";
 
-export const ridesList = payload =>{
-    return{
+export const ridesList = payload => {
+    return {
         type: RIDES_LIST,
-        payload }
+        payload
+    }
 };
 
 
-export const formRide = payload =>{
-    return{
+export const formRide = payload => {
+    return {
         type: FORM_RIDE,
-        payload }
+        payload
+    }
 };
 
-const _createRide = payload =>{
-    return{
+const _createRide = payload => {
+    return {
         type: CREATE_RIDE,
-        payload }
+        payload
+    }
 };
 
-export const showRide = payload =>{
-    return{
+export const showRide = payload => {
+    return {
         type: SHOW_RIDE,
-        payload }
+        payload
+    }
 };
 
-export const statusCode = payload =>{
-    return{
+export const statusCode = payload => {
+    return {
         type: STATUS_CODE,
-        payload }
+        payload
+    }
 };
 
-export const editRide = payload =>{
-    return{
+export const editRide = payload => {
+    return {
         type: EDIT_RIDE,
-        payload }
+        payload
+    }
 };
-export const getRideRequests = payload =>{
-    return{
+export const getRideRequests = payload => {
+    return {
         type: RIDE_REQUESTS,
-        payload }
+        payload
+    }
 };
 
 
-export const getRides = get =>  async (dispatch) => {
+export const getRides = get => async (dispatch) => {
 
-        return await axiosInstance
-                .get('/rides')
-                .then((response) => {
-                    dispatch(ridesList(response.data['Ride offers']));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
-
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+    return await axiosInstance
+        .get('/rides')
+        .then((response) => {
+            dispatch(ridesList(response.data['Ride offers']));
+        })
+        .catch(error => {
+            try {
+                dispatch(createErrors(error.response.data));
+            } catch (error) {
+                dispatch(createErrors({error: 'Check your internet connection'}));
+            }
+        })
 
 };
 
-export const createRide = postData =>  async (dispatch) => {
-        return await axiosInstance
-                .post('/rides/create', postData)
-                .then((response) => {
-                    dispatch(_createRide(response.data.ride));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
+export const createRide = postData => async (dispatch) => {
+    return await axiosInstance
+        .post('/rides/create', postData)
+        .then((response) => {
+            dispatch(_createRide(response.data.ride));
+        })
+        .catch(error => {
+            try {
+                dispatch(createErrors(error.response.data));
+            } catch (error) {
+                dispatch(createErrors({error: 'Check your internet connection'}));
+            }
 
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+        })
 
 };
 
 
+export const getRide = rideId => async (dispatch) => {
+    return await axiosInstance
+        .get(`/rides/${rideId}`)
+        .then((response) => {
+            dispatch(_createRide(response.data.ride));
+        })
+        .catch(error => {
 
-export const getRide = rideId =>  async (dispatch) => {
-        return await axiosInstance
-                .get(`/rides/${rideId}`)
-                .then((response) => {
-                    dispatch(_createRide(response.data.ride));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
+            console.log(error)
 
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+        })
 
 };
 
-export const deleteRide = rideId =>  async (dispatch) => {
-        return await axiosInstance
-                .delete(`/rides/delete/${rideId}`)
-                .then((response) => {
-                    console.log(response);
-                    dispatch(_createRide(response.data));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
+export const deleteRide = rideId => async (dispatch) => {
+    return await axiosInstance
+        .delete(`/rides/delete/${rideId}`)
+        .then((response) => {
+            dispatch(_createRide(response.data));
+        })
+        .catch(error => {
 
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+            console.log(error)
+        })
 
 };
 
-export const updateRide = (rideId,postData) =>  async (dispatch) => {
-        return await axiosInstance
-                .put(`/rides/update/${rideId}`, postData)
-                .then((response) => {
-                    console.log(response);
-                    dispatch(editRide(false));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors);
-                        dispatch(editRide(false));
+export const updateRide = (rideId, postData) => async (dispatch) => {
+    return await axiosInstance
+        .put(`/rides/update/${rideId}`, postData)
+        .then((response) => {
+            dispatch(editRide(false));
+        })
+        .catch(error => {
+            dispatch(editRide(false));
+            console.log(error)
 
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+        })
 
 };
 
-export const requestRide = rideId =>  async (dispatch) => {
-        return await axiosInstance
-                .post(`/rides/requests/create/${rideId}`)
-                .then((response) => {
-                    dispatch(statusCode(response.status));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
+export const requestRide = rideId => async (dispatch) => {
+    return await axiosInstance
+        .post(`/rides/requests/create/${rideId}`)
+        .then((response) => {
+            dispatch(statusCode(response.status));
+        })
+        .catch(error => {
+            try {
+                dispatch(createErrors(error.response.data));
+            } catch (error) {
+                dispatch(createErrors({error: 'Check your internet connection'}));
+            }
 
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
-
-};
-
-export const getRequests = rideId =>  async (dispatch) => {
-        return await axiosInstance
-                .get(`/rides/requests/${rideId}`)
-                .then((response) => {
-                    dispatch(getRideRequests(response.data.requests));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
-
-                    } catch(error) {
-                         console.log(error)
-                    }
-                })
+        })
 
 };
 
-export const approveRequest = postData =>  async (dispatch) => {
-        return await axiosInstance
-                .post(`/rides/requests/approve/${postData.rideId}`, {approval:postData.approval})
-                .then((response) => {
-                    dispatch(statusCode(response.status));
-                } )
-                .catch(error => {
-                    try {
-                        let errors= error.response;
-                        console.log(errors)
+export const getRequests = rideId => async (dispatch) => {
+    return await axiosInstance
+        .get(`/rides/requests/${rideId}`)
+        .then((response) => {
+            dispatch(getRideRequests(response.data.requests));
+        })
+        .catch(error => {
 
-                    } catch(error) {
-                         // console.log(error)
-                    }
-                })
+            console.log(error)
+
+        })
+
+};
+
+export const approveRequest = postData => async (dispatch) => {
+    return await axiosInstance
+        .post(`/rides/requests/approve/${postData.rideId}`, {approval: postData.approval})
+        .then((response) => {
+            dispatch(statusCode(response.status));
+        })
+        .catch(error => {
+            try {
+                dispatch(createErrors(error.response.data));
+            } catch (error) {
+                dispatch(createErrors({error: 'Check your internet connection'}));
+            }
+        })
 
 };
