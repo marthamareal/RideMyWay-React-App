@@ -1,6 +1,6 @@
 import React from 'react'
 import M from "materialize-css";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {createRide, formRide, updateRide} from "../../actions/Rides";
 
 class CreateRide extends React.Component {

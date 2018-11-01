@@ -8,3 +8,4 @@ export const CREATE_RIDE = "CREATE_RIDE";
 export const SHOW_RIDE = "SHOW_RIDE";
 export const STATUS_CODE = "STATUS_CODE";
 export const EDIT_RIDE = "EDIT_RIDE";
+export const RIDE_REQUESTS = "RIDE_REQUESTS";

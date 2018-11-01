@@ -1,4 +1,4 @@
-import {CREATE_RIDE, EDIT_RIDE, FORM_RIDE, RIDES_LIST, SHOW_RIDE, STATUS_CODE} from "../actions/Types";
+import {CREATE_RIDE, EDIT_RIDE, FORM_RIDE, RIDE_REQUESTS, RIDES_LIST, SHOW_RIDE, STATUS_CODE} from "../actions/Types";
 
 const initialState = {
     form_ride:{
@@ -12,7 +12,8 @@ const initialState = {
     showRide:false,
     onEdit:false,
     status:0,
-    ridesList:[]
+    ridesList:[],
+    requests:[]
 };
 
 const RideReducer = (state = initialState, action) => {
@@ -58,6 +59,13 @@ const RideReducer = (state = initialState, action) => {
             return {
                 ...state,
                 onEdit: action.payload
+            };
+
+        case RIDE_REQUESTS:
+
+            return {
+                ...state,
+                requests: action.payload
             };
 
         default:
