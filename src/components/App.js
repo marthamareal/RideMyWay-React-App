@@ -9,6 +9,7 @@ import AboutUs from "./base/AboutUs";
 import Signup from "./auth/Signup";
 import Profile from "./auth/Profile";
 import ShowRide from "./rides/ShowRide";
+import RideRequests from "./rides/RideRequests";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path={ '/signup' } component={Signup}/>
             <Route path={ '/show-ride/:rideId' } component={ShowRide}/>
             <Route path={ '/edit-ride/:rideId' } component={CreateRide}/>
+            <Route path={ '/requests/:rideId' } component={RideRequests}/>
 
       </div>
     );

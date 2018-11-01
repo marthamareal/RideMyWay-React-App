@@ -41,7 +41,7 @@ class ShowRide extends React.Component {
 
     };
 
-    request=  async event => {
+    onRequest=  async event => {
         event.preventDefault();
         await this.props.requestRide(this.props.match.params.rideId);
         if (this.props.status === 201) {
@@ -52,6 +52,12 @@ class ShowRide extends React.Component {
             M.toast({html: 'Failed to request ride', classes: "red darken-3"});
             this.props.history.goBack()
         }
+
+    };
+
+    viewRequests = event => {
+        event.preventDefault();
+        this.props.history.push(`/requests/${this.props.match.params.rideId}`)
 
     };
 
@@ -89,12 +95,19 @@ class ShowRide extends React.Component {
                                     <td>Price</td>
                                     <td>{this.props.ride.price}</td>
                                 </tr>
+
+                                <tr>
+                                    <td>Requests</td>
+                                    <td>{this.props.ride.requests}
+                                     {this.props.ride.requests > 0 &&<button onClick={this.viewRequests} className={'btn-flat grey lighten-3 right'}><span>View</span></button>}</td>
+
+                                </tr>
                                 </tbody>
                             </table>
                             <div className="card-action">
-                                <a className={'btn light-green center'} onClick={this.request}>REQUEST</a>
+                                <a className={'btn light-green center'} onClick={this.onRequest}>REQUEST</a>
 
-                                <a className={'btn light-green left'} onClick={this.onEdit}>EDIT</a>
+                                <a className={'btn green left'} onClick={this.onEdit}>EDIT</a>
                                 <a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>
                             </div>
                         </div>

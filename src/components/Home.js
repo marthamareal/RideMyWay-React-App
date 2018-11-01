@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../static/images/logo.jpg'
 import {Link} from "react-router-dom";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {loginUser, loginForm} from "../actions/Signup";
 import M from "materialize-css";
 

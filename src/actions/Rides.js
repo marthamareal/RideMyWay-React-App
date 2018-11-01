@@ -1,4 +1,4 @@
-import {CREATE_RIDE, FORM_RIDE, EDIT_RIDE, RIDES_LIST, SHOW_RIDE, STATUS_CODE} from "./Types";
+import {CREATE_RIDE, FORM_RIDE, EDIT_RIDE, RIDES_LIST, SHOW_RIDE, STATUS_CODE, RIDE_REQUESTS} from "./Types";
 import { axiosInstance } from "../globals";
 
 export const ridesList = payload =>{
@@ -35,6 +35,11 @@ export const statusCode = payload =>{
 export const editRide = payload =>{
     return{
         type: EDIT_RIDE,
+        payload }
+};
+export const getRideRequests = payload =>{
+    return{
+        type: RIDE_REQUESTS,
         payload }
 };
 
@@ -139,6 +144,43 @@ export const requestRide = rideId =>  async (dispatch) => {
         return await axiosInstance
                 .post(`/rides/requests/create/${rideId}`)
                 .then((response) => {
+                    dispatch(statusCode(response.status));
+                } )
+                .catch(error => {
+                    try {
+                        let errors= error.response;
+                        console.log(errors)
+
+                    } catch(error) {
+                         console.log(error)
+                    }
+                })
+
+};
+
+export const getRequests = rideId =>  async (dispatch) => {
+        return await axiosInstance
+                .get(`/rides/requests/${rideId}`)
+                .then((response) => {
+                    dispatch(getRideRequests(response.data.requests));
+                } )
+                .catch(error => {
+                    try {
+                        let errors= error.response;
+                        console.log(errors)
+
+                    } catch(error) {
+                         console.log(error)
+                    }
+                })
+
+};
+
+export const approveRequest = postData =>  async (dispatch) => {
+        return await axiosInstance
+                .post(`/rides/requests/approve/${postData.rideId}`, {approval:postData.approval})
+                .then((response) => {
+                    console.log(response);
                     dispatch(statusCode(response.status));
                 } )
                 .catch(error => {
