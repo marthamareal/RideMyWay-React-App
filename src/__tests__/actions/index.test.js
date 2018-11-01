@@ -12,7 +12,7 @@ import {
     requestRide,
     updateRide
 } from "../../actions/Rides";
-import {  RIDES_LIST} from "../../actions/Types";
+import {REGISTER_ERRORS, REGISTER_USER, RIDES_LIST} from "../../actions/Types";
 
 describe('test actions', () => {
     let store;
@@ -41,9 +41,9 @@ describe('test actions', () => {
         };
 
         httpMock.onPost(registerUrl).reply(201, responseData);
-
         registerUser()(store.dispatch);
         await flushAllPromises();
+
     });
 
     it('should login user', async () => {

@@ -19,6 +19,11 @@ describe('Signup Tests', () => {
         const wrapper = mount(<Signup store={store} />);
         wrapper.find('#signup_form').simulate('submit');
         wrapper.find('#fname').simulate('change');
+        wrapper.find('#lname').simulate('change');
+        wrapper.find('#email').simulate('change');
+        wrapper.find('#city').simulate('change');
+        wrapper.find('#phone').simulate('change');
+        wrapper.find('#password').simulate('change');
     });
 
 

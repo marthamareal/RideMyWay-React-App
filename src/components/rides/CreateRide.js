@@ -46,7 +46,6 @@ class CreateRide extends React.Component {
         event.preventDefault();
 
         await this.props.updateRide(this.props.match.params.rideId, this.props.form_ride);
-
         if (this.props.ride.id) {
             M.toast({html: 'Ride updated successfully', id: 'toast-container', classes: "green darken-3"});
 
@@ -109,8 +108,8 @@ class CreateRide extends React.Component {
 
                             </div>
                             <div className={'row'}>
-                                {this.props.onEdit ? <input type="submit" onClick={this.onUpdate} value="Save"/> :
-                                    <input onClick={this.onSubmit} type="submit" value="Create"/>}
+                                {this.props.onEdit ? <input type="submit" id={'updateRide'} onClick={this.onUpdate} value="Save"/> :
+                                    <input id={'createRide'} onClick={this.onSubmit} type="submit" value="Create"/>}
                             </div>
 
 

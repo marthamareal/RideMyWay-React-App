@@ -43,7 +43,7 @@ describe('Header Tests', () => {
     it('should render without crashing', function () {
         const wrapper = mount(<Router><Header store={store}/></Router>);
         localStorage.setItem('token', 'tokenValue');
-        // wrapper.find("#logout").simulate('click')
+        // wrapper.find("#logout_li").simulate('click')
     });
 
 

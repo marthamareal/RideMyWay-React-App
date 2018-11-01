@@ -26,7 +26,9 @@ class Header extends React.Component {
                 {localStorage.getItem('token')&&<Link to={'/create-ride'}><li>DRIVE</li></Link>}
                 <Link to={'/contact-us'}><li>CONTACT US</li></Link>
                 <Link to={ '/about-us' }><li>ABOUT US</li></Link>
-                {localStorage.getItem('token')&&<li id="logout" onClick={this.logout} >LOGOUT</li>}
+                {localStorage.getItem('token')&&
+                <li onClick={this.logout} >LOGOUT</li>
+                }
             </ul>
 
         </div>
