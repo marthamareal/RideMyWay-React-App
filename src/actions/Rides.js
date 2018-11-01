@@ -180,7 +180,6 @@ export const approveRequest = postData =>  async (dispatch) => {
         return await axiosInstance
                 .post(`/rides/requests/approve/${postData.rideId}`, {approval:postData.approval})
                 .then((response) => {
-                    console.log(response);
                     dispatch(statusCode(response.status));
                 } )
                 .catch(error => {
@@ -189,7 +188,7 @@ export const approveRequest = postData =>  async (dispatch) => {
                         console.log(errors)
 
                     } catch(error) {
-                         console.log(error)
+                         // console.log(error)
                     }
                 })
 

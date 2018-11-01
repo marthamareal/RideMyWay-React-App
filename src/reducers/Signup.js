@@ -1,6 +1,6 @@
 import {FORM_USER, LOGIN_USER, REGISTER_ERRORS, REGISTER_USER} from "../actions/Types";
 
-const initialState = {
+export const initialState = {
     form_user: {
         'first name': '',
         'last name': '',

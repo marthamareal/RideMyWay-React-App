@@ -105,9 +105,9 @@ h4{
 
 .signup-login input[type=text],input[type=email],input[type=password],input[type=number],input[type=date],input[type=time]{
     width: 70%!important;
-  height: auto;
+    //height: auto;
     padding: 10px 5px;
-    margin-left: 5px!important;
+    //margin-left: 5px!important;
     margin-bottom: 5px!important;
     color: green;
 }
@@ -116,7 +116,6 @@ textarea{
     width: 70%;
     height: 200px;
     padding: 10px 15px;
-    margin-left: 10%;
     margin-bottom: 30px;
 }
 input[type=submit]{

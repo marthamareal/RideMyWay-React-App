@@ -5,7 +5,7 @@ class AboutUs extends React.Component {
         return (
             <div className="content">
                 <div className="signup-login about-us">
-                    <center><h4>ABOUT US</h4></center>
+                    <h5>ABOUT US</h5><br/><br/>
                     <p>Ride My Way is a product assignment given to Andela paticipants in Kampala cycle 9</p>
                     <p>This assignment is meant to help us practice what we were reading in home study tests given at an
                         earlier stage of application. </p>
