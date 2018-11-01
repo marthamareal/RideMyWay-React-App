@@ -16,7 +16,10 @@ describe('Home Tests', () => {
   });
 
     it('should render without crashing', function () {
-        shallow(<Home store={store}/>)
+        const wrapper = mount(<Home store={store}/>);
+        wrapper.find('#login_form').simulate('submit');
+        wrapper.find('#email').simulate('change');
+        wrapper.find('#password').simulate('change');
     });
 
 

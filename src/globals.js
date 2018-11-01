@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 
-const url = 'http://127.0.0.1:5000';
+const url = 'https://ride-my-way-api-database.herokuapp.com';
 
 let settings = {
   baseURL: url

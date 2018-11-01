@@ -69,7 +69,7 @@ class ShowRide extends React.Component {
                 className={this.props.showRide? "modal modal-open" : "modal"}
             >
                 <div className="modal-content">
-                    <i className={'material-icons'} style={{cursor: 'pointer'}} onClick={this.onClose} > close</i>
+                    <i className={'material-icons'} style={{cursor: 'pointer'}} onClick={this.onClose} id={'close'}> close</i>
                     <div className="card ">
                         <div className="card-content ">
                             <span className="card-title"><h5> {this.props.ride.ref_no} by {this.props.ride.creator}</h5></span>
@@ -105,10 +105,10 @@ class ShowRide extends React.Component {
                                 </tbody>
                             </table>
                             <div className="card-action">
-                                <a className={'btn light-green center'} onClick={this.onRequest}>REQUEST</a>
+                                <a className={'btn light-green center'} id={'request'} onClick={this.onRequest}>REQUEST</a>
 
-                                <a className={'btn green left'} onClick={this.onEdit}>EDIT</a>
-                                <a className={'btn red right'} onClick={this.onDelete} >DELETE</a><br/>
+                                <a className={'btn green left'} id={'edit'} onClick={this.onEdit}>EDIT</a>
+                                <a className={'btn red right'} id={'delete'} onClick={this.onDelete} >DELETE</a><br/>
                             </div>
                         </div>
                     </div>
