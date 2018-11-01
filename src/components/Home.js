@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../static/images/logo.jpg'
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {loginUser, loginForm} from "../actions/Signup";
+import {loginForm, loginUser} from "../actions/Signup";
 import M from "materialize-css";
 
 class Home extends React.Component {
@@ -37,7 +37,6 @@ class Home extends React.Component {
 
     render() {
         return (
-
             <div className="index-content">
 
                 <div className="signup-login login-index">
@@ -50,9 +49,11 @@ class Home extends React.Component {
                     <form id="login_form" onSubmit={this.onSubmit}>
                         <center><h6>Login</h6></center>
                         <label>Email Address:</label>
-                        <input type="email" id="email" name="email" onChange={this.onChange} placeholder="Email Address" autoFocus required/>
+                        <input type="email" id="email" name="email" onChange={this.onChange} placeholder="Email Address"
+                               autoFocus required/>
                         <label>Password:</label>
-                        <input type="password" id="password" name="password" onChange={this.onChange} placeholder="Create Password"
+                        <input type="password" id="password" name="password" onChange={this.onChange}
+                               placeholder="Create Password"
                                minLength="8"
                                required title="password length must be 8 ore more"/>
 
