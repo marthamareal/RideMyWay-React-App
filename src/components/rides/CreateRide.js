@@ -60,11 +60,10 @@ class CreateRide extends React.Component {
     render() {
         return (
             <div className="content">
-
                 <div className="create-ride signup-login">
                     <h5>CREATE RIDE OFFER</h5><br/>
 
-                    <form>
+                    <form id={"create-ride"}>
                         <div className={'row col s12 m6'}>
                             <div className={'col s6 m6'}>
                                 <label>Date:</label>

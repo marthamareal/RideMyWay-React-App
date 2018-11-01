@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../../static/images/logo.jpg'
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {formUser, registerUser} from "../../actions/Signup";
 import M from "materialize-css";
@@ -56,11 +55,9 @@ class Signup extends React.Component {
                     <div id="form-head">
                         <img src={logo} id="logo" alt={'...'}/>
                     </div>
-
                     <form id="signup_form" onSubmit={this.onSubmit}>
                         <center><h6>Sign-Up To start Your Way!!</h6></center>
-
-                        <br/>
+                        <h6 style={{color:'red'}}>Already have an account? <a id="_login" href={'/'}>Login</a></h6>
 
                         <input type="text" id="fname" name="fname" placeholder="First Name"
                                pattern="^[a-zA-Z]{3,25}$"
@@ -92,13 +89,12 @@ class Signup extends React.Component {
                         <input type="password" id="password" name="password"
                                placeholder="Create Password" minLength="8"
                                onChange={this.onChange}
-                               required title="password length must be 8 ore more"/>
+                               required title="password length must be 8 ore more"/><br/>
 
                         <input type="submit" value="Sign Up"/>
 
-                    </form>
 
-                    <center>Already have an account? <Link to={'/'}>Login</Link></center>
+                    </form>
 
                 </div>
             </div>

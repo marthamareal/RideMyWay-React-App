@@ -49,7 +49,7 @@ class RideRequests extends React.Component {
                             <td>{request.requestor}</td>
                             <td>{request.status}</td>
                             {request.status === 'Pending' && <td>
-                                <a className={'btn-small green left'} onClick={this.onApproval(request.request_id,'Y')}>Accept</a>
+                                <a className={'btn-small green left'} id={'approval'} onClick={this.onApproval(request.request_id,'Y')}>Accept</a>
                                 <a className={'btn-small red right'} onClick={this.onApproval(request.request_id,'N')}>Reject</a><br/>
                             </td>}
 

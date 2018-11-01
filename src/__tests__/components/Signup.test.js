@@ -16,7 +16,9 @@ describe('Signup Tests', () => {
   });
 
     it('should render without crashing', function () {
-        shallow(<Signup store={store}/>)
+        const wrapper = mount(<Signup store={store} />);
+        wrapper.find('#signup_form').simulate('submit');
+        wrapper.find('#fname').simulate('change');
     });
 
 

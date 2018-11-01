@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../static/images/logo.jpg'
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {loginForm, loginUser} from "../actions/Signup";
 import M from "materialize-css";
@@ -60,7 +59,7 @@ class Home extends React.Component {
                         <input type="submit" id="login" value="Login"/>
 
                     </form>
-                    <center>Don't have an account? <Link to={'/signup'}>SignUp</Link></center>
+                    <center>Don't have an account? <a href={'/signup'}>SignUp</a></center>
                     <br/>
 
                 </div>
