@@ -1,7 +1,7 @@
 import {
     CREATE_RIDE,
-    EDIT_RIDE,
-    FORM_RIDE, REGISTER_ERRORS,
+    EDIT_RIDE, FETCH_STATUS,
+    FORM_RIDE, REGISTER_ERRORS, RIDE_OWNERSHIP,
     RIDE_REQUESTS,
     RIDES_LIST,
     SHOW_RIDE,
@@ -21,6 +21,8 @@ const initialState = {
   onEdit: false,
   status: 0,
   message:'',
+  isFetching: false,
+  isOwner: false,
   ridesList: [],
   requests: []
 };
@@ -54,6 +56,12 @@ const RideReducer = (state = initialState, action) => {
         status: action.payload
       };
 
+    case FETCH_STATUS:
+      return {
+        ...state,
+        isFetching: action.payload
+      };
+
     case RIDES_LIST:
       return {
         ...state,
@@ -76,6 +84,12 @@ const RideReducer = (state = initialState, action) => {
       return {
         ...state,
         requests: action.payload
+      };
+
+    case RIDE_OWNERSHIP:
+      return {
+        ...state,
+        isOwner: action.payload
       };
 
     default:

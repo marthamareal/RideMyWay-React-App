@@ -25,8 +25,9 @@ class Home extends React.Component {
 
     if (localStorage.getItem("token")) {
       this.props.history.push("/");
+      this.props.history.go()
     } else {
-      M.toast({ html: "Login failed", classes: "red darken-3 center" });
+      M.toast({ html: `Login failed  ${this.props.errors}`, classes: "red darken-3 center" });
     }
   };
 
@@ -80,7 +81,8 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     login_user: state.register_user.login_user,
-    user: state.register_user.user
+    user: state.register_user.user,
+    errors: state.register_user.errors
   };
 };
 

@@ -8,6 +8,7 @@ class Header extends React.Component {
     event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("user_id");
     this.props.history.push("/");
   };
 

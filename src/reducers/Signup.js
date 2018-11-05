@@ -1,8 +1,9 @@
 import {
-  FORM_USER,
-  LOGIN_USER,
-  REGISTER_ERRORS,
-  REGISTER_USER
+    FETCH_STATUS,
+    FORM_USER,
+    LOGIN_USER,
+    REGISTER_ERRORS,
+    REGISTER_USER
 } from "../actions/Types";
 
 export const initialState = {
@@ -42,6 +43,12 @@ const signUpReducer = (state = initialState, action) => {
       return {
         ...state,
         errors: action.payload
+      };
+
+    case FETCH_STATUS:
+      return {
+        ...state,
+        isFetching: action.payload
       };
 
     case LOGIN_USER:

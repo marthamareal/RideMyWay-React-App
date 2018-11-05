@@ -42,7 +42,7 @@ class Signup extends React.Component {
       });
       this.props.history.push("/");
     } else {
-      M.toast({ html: "Registration failed", classes: "red darken-3" });
+      M.toast({ html: `Registration failed ${this.props.errors}`, classes: "red darken-3" });
     }
   };
 
@@ -53,7 +53,7 @@ class Signup extends React.Component {
           <div id="form-head">
             <img src={logo} id="logo" alt={"..."} />
           </div>
-          <SignupForm onChange={this.onChange} onSubmit={this.onSubmit} />
+          <SignupForm onChange={this.onChange} isFetching={this.props.isFetching} onSubmit={this.onSubmit} />
         </div>
       </div>
     );
@@ -142,7 +142,7 @@ export const SignupForm = props => {
       />
       <br />
 
-      <input type="submit" value="Sign Up" />
+      <input className={props.isFetching ? ' btn-small disabled ' : '' } type="submit" value="Sign Up" />
     </form>
   );
 };
@@ -150,7 +150,9 @@ export const SignupForm = props => {
 const mapStateToProps = state => {
   return {
     form_user: state.register_user.form_user,
-    user: state.register_user.user
+    user: state.register_user.user,
+    errors: state.register_user.errors,
+    isFetching: state.register_user.isFetching,
   };
 };
 

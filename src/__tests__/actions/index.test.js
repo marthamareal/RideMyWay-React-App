@@ -14,7 +14,6 @@ import {
 } from "../../actions/Rides";
 import {
   REGISTER_ERRORS,
-  REGISTER_USER,
   RIDES_LIST
 } from "../../actions/Types";
 
@@ -69,23 +68,33 @@ describe("test actions", () => {
     await flushAllPromises();
     expect(store.getActions()).toEqual([{ type: RIDES_LIST, payload: [] }]);
   });
+
   it("should create ride", async () => {
-    httpMock.onPost("/rides/create").reply(201);
-
+    httpMock.onPost("/rides/create").reply(201, {'ride':{'id':1}});
     createRide()(store.dispatch);
     await flushAllPromises();
+    expect(store.getActions()).toEqual( [
+        {"payload": true, "type": "FETCH_STATUS"},
+        {"payload": {"id": 1}, "type": "CREATE_RIDE"},
+        {"payload": false, "type": "FETCH_STATUS"}])
 
-    httpMock.onPost("/rides/create").reply(400);
+  });
 
+   it("should fail to create ride", async () => {
+    httpMock.onPost("/rides/create").reply(400, {'message':'Failed to create ride'});
     createRide()(store.dispatch);
     await flushAllPromises();
+    expect(store.getActions()).toEqual([
+        {"payload": true, "type": "FETCH_STATUS"},
+        {"payload": "Failed to create ride", "type": "REGISTER_ERRORS"},
+        {"payload": false, "type": "FETCH_STATUS"}
+        ])
+
   });
 
   it("should get ride", async () => {
-    httpMock.onGet("/rides/1").reply(200);
-
+    httpMock.onGet("/rides/1").reply(200, {'ride':{'id':1}});
     getRide()(store.dispatch);
-    await flushAllPromises();
   });
   it("should delete ride", async () => {
     httpMock.onDelete("/rides/delete/1").reply(200);
@@ -93,12 +102,27 @@ describe("test actions", () => {
     deleteRide()(store.dispatch);
     await flushAllPromises();
   });
-  it("should update ride", async () => {
-    httpMock.onPut("/rides/update/1").reply(200);
 
+  it("should update ride", async () => {
+    httpMock.onPut("/rides/update/1").reply(200, {'updated ride':{'id':1}});
     updateRide()(store.dispatch);
     await flushAllPromises();
+    expect(store.getActions()).toEqual([
+        {"payload": true, "type": "FETCH_STATUS"},
+        {"payload": false, "type": "EDIT_RIDE"},
+        {"payload": false, "type": "FETCH_STATUS"}])
   });
+
+  it("should fail to update ride", async () => {
+    httpMock.onPut("/rides/update/1").reply(400, {response:{'message':'Failed to update ride'}});
+    updateRide()(store.dispatch);
+    await flushAllPromises();
+    expect(store.getActions()).toEqual([
+        {"payload": true, "type": "FETCH_STATUS"},
+        {"payload": false, "type": "EDIT_RIDE"},
+        {"payload": false, "type": "FETCH_STATUS"}])
+  });
+
   it("should request ride", async () => {
     httpMock.onPost("/rides/requests/create/1").reply(200);
 

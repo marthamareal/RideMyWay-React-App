@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import CreateRide from "../../components/rides/CreateRide";
+import CreateRide, {RideForm} from "../../components/rides/CreateRide";
 import { Provider } from "react-redux";
 import store from "../../store";
 
@@ -22,5 +22,20 @@ describe("CreateRide Tests", () => {
     wrapper.find("#source").simulate("change");
     wrapper.find("#destination").simulate("change");
     wrapper.find("#price").simulate("change");
+  });
+
+
+   it("should render Ride form", function() {
+    const wrapper = mount(
+        <RideForm
+            form_ride={jest.fn()}
+            onEdit={true}
+            isFetching={false}
+            onChange={this.onChange}
+            onSubmit={jest.fn()}
+            onUpdate={jest.fn()}
+        />);
+    wrapper.find("#updateRide").simulate("click");
+
   });
 });

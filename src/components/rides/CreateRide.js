@@ -78,6 +78,7 @@ class CreateRide extends React.Component {
           <RideForm
             form_ride={this.props.form_ride}
             onEdit={this.props.onEdit}
+            isFetching={this.props.isFetching}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             onUpdate={this.onUpdate}
@@ -168,18 +169,18 @@ export const RideForm = props => {
       </div>
       <div className={"row"}>
         {props.onEdit ? (
-          <input
+          <input className={props.isFetching? ' btn disabled':''}
             type="submit"
             id={"updateRide"}
             onClick={props.onUpdate}
             value="Save"
           />
         ) : (
-          <input
+          <input className={props.isFetching? ' btn disabled':''}
             id={"createRide"}
             onClick={props.onSubmit}
             type="submit"
-            value="Create"
+            value='Create'
           />
         )}
       </div>
@@ -192,7 +193,8 @@ const mapStateToProps = state => {
     form_ride: state.rides.form_ride,
     ride: state.rides.ride,
     onEdit: state.rides.onEdit,
-    errors: state.rides.errors
+    errors: state.rides.errors,
+    isFetching: state.rides.isFetching,
   };
 };
 

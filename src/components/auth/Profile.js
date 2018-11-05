@@ -4,7 +4,8 @@ import RidesList from "../rides/RidesList";
 import { getRides } from "../../actions/Rides";
 
 class Profile extends React.Component {
-  async componentWillMount() {
+
+  async componentDidMount() {
     await this.props.getRides(true);
   }
 

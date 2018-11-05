@@ -9,3 +9,5 @@ export const SHOW_RIDE = "SHOW_RIDE";
 export const STATUS_CODE = "STATUS_CODE";
 export const EDIT_RIDE = "EDIT_RIDE";
 export const RIDE_REQUESTS = "RIDE_REQUESTS";
+export const FETCH_STATUS = "FETCH_STATUS";
+export const RIDE_OWNERSHIP = "RIDE_OWNERSHIP";
